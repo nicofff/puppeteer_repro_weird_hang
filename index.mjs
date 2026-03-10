@@ -1,8 +1,8 @@
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
 
 const browser = await puppeteer.launch({
-  executablePath: process.env.CHROME_BIN || '/usr/bin/chromium',
-  args: ['--no-sandbox', '--disable-gpu'],
+  protocolTimeout: 20_000,
+  args: ['--no-sandbox', '--disable-gpu'], // Still fails if you comment this out and run with --cap-add=SYS_ADMIN
 });
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
